@@ -1,0 +1,5 @@
+.env
+
+/server/public/main.js
+
+node_modules
