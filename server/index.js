@@ -5,6 +5,7 @@ const path = require('path')
 const { MongoClient } = require('mongodb')
 const app = express()
 const flashCardsRouter = require('./routes/flash-cards-router.js')
+const connectionString = process.env.MONGODB_URI.split('/')
 
 MongoClient
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
@@ -13,7 +14,7 @@ MongoClient
     process.exit(1)
   })
   .then(client => {
-    const db = client.db('flash-cards-react')
+    const db = client.db(connectionString[connectionString.length - 1])
     const collection = db.collection('cards')
     const publicPath = path.join(__dirname, 'public/')
     app
