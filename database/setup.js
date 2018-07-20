@@ -8,8 +8,7 @@ MongoClient
     const db = client.db('flash-cards-react')
     const collection = db.collection('cards')
     return collection
-      .deleteMany({})
-      .then(() => collection.insertMany(seed))
+      .insertMany(seed))
       .then(() => client.close())
   })
   .catch(err => {
